@@ -1,0 +1,60 @@
+<!-- http://0.0.0.0:8000/
+     python3 -m http.server 8000-->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Проверь насколько надёжен твой пароль</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="light-theme">
+  <!-- Кнопка переключения темы -->
+  <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+  <div class="container">
+    <!-- Основной экран -->
+    <div id="main-screen" class="screen active">
+      <h1>Проверь насколько надёжен твой пароль</h1>
+      <input type="text" id="password" placeholder="Введи свой пароль..." />
+      <p id="message"></p>
+      <button onclick="checkPassword()">Проверить</button>
+
+      <div id="result" class="hidden">
+        <div class="progress-container">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <p id="level-text"></p>
+        <p id="tip"></p>
+      </div>
+
+      <div class="generator">
+        <button onclick="showGeneratorScreen()">Сгенерировать новый пароль</button>
+      </div>
+    </div>
+
+    <!-- Экран генерации пароля -->
+    <div id="generator-screen" class="screen hidden">
+      <h2>Настрой генерацию пароля</h2>
+      <label>Длина пароля:
+        <input type="number" id="length" min="6" max="64" value="12">
+      </label>
+
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="letters" checked> Буквы a-z, A-Z</label>
+        <label><input type="checkbox" id="numbers" checked> Цифры 0-9</label>
+        <label><input type="checkbox" id="symbols" checked> Спецсимволы (!@#$%^&*)</label>
+      </div>
+      
+      <button onclick="generatePassword()">Сгенерировать</button>
+      <button onclick="backToMain()">← Назад</button>
+      <button onclick="copyPassword()">Копировать пароль</button>
+      <p id="generated-password"></p>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
